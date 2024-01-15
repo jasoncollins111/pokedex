@@ -5,6 +5,7 @@ import { fetchPokemon } from './pokedexAPI';
 interface PokemonState {
   pokemonDetails: Pokemon;
   status: 'idle' | 'loading' | 'failed' | 'fulfilled';
+  history: string[];
 }
 
 interface Pokemon {
@@ -23,7 +24,8 @@ const initialState: PokemonState = {
     weight: '',
     sprite: ''
   },
-  status: 'idle'
+  status: 'idle',
+  history: []
 };
 
 export const pokedexSearch = createAsyncThunk(
@@ -47,6 +49,7 @@ export const pokedexSlice = createSlice({
       .addCase(pokedexSearch.fulfilled, (state, action) => {
         state.status = 'fulfilled';
         state.pokemonDetails = action.payload;
+        !state.history.includes(action.payload.name) && state.history.push(action.payload.name);
       })
       .addCase(pokedexSearch.rejected, (state) => {
         state.status = 'failed';
@@ -55,5 +58,7 @@ export const pokedexSlice = createSlice({
 });
 
 export const selectPokemon = (state: RootState) => state.pokedex.pokemonDetails;
+export const selectStatus = (state: RootState) => state.pokedex.status;
+export const selectHistory = (state: RootState) => state.pokedex.history;
 
 export default pokedexSlice.reducer;

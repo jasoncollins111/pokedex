@@ -8,8 +8,15 @@ export function PokedexCard() {
   const abilityMap = pokemonDetails.abilities.map((ability, idx) => {
     return <Text key={idx}>{ability}</Text>
   });
+
   return (
-    <Card width="medium" height="medium" alignSelf="center" background="antiqueWhite" margin="medium">
+    <Card
+        width="medium"
+        height="medium"
+        alignSelf="center"
+        background="antiqueWhite"
+        margin="medium"
+    >
         <CardHeader alignSelf="center">
             <Heading level="3">{pokemonDetails.name.toUpperCase()}</Heading>
         </CardHeader>

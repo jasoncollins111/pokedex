@@ -1,10 +1,14 @@
 import { useState } from "react";
-import { pokedexSearch } from "./pokedexSlice";
-import { useAppDispatch } from '../../app/hooks';
-import {Box, Form, TextInput, Button} from 'grommet';
+import { pokedexSearch, selectHistory, selectStatus } from "./pokedexSlice";
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { Box, Form, TextInput, Button } from 'grommet';
 import { PokedexCard } from "./PokedexCard";
+import { PokedexHistory } from "./PokedexHistory";
+
 export function Pokedex() {
   const dispatch = useAppDispatch();
+  const searchStatus = useAppSelector(selectStatus);
+  const historyStatus = useAppSelector(selectHistory);
   const [searchTerm, setSearchTerm] = useState<string>('pikachu');
 
   function handleSearch(){
@@ -16,24 +20,28 @@ export function Pokedex() {
   }
 
   return (
-    <Box>
+    <Box skeleton={searchStatus === 'loading'}>
       <Box flex justify="center" direction="row">
         <Form onSubmit={handleSearch}>
           <Box width="medium" margin="small">
             <TextInput
               onChange={handleInputChange}
-              placeholder="Search for Pokemon"
+              placeholder="Enter name of Pokemon"
             />
           <Button
             primary
-            label='Search Pokemon'
-            margin="small"
+            label='Search Pokedex'
+            margin={{top: "small", left: "xlarge", right: "xlarge"}}
+            pad="small"
             type='submit'
           />
           </Box>
         </Form>
       </Box>
-      {<PokedexCard/>}
+      {searchStatus === 'fulfilled' && <PokedexCard/>}
+      <Box flex justify="center" direction="row">
+        {historyStatus.length > 0 && <PokedexHistory/>}
+      </Box>
     </Box>
   );
 }
