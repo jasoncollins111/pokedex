@@ -1,11 +1,10 @@
 import { useState } from "react";
-import { pokedexSearch, selectPokemon } from "./pokedexSlice";
-import { useAppSelector, useAppDispatch } from '../../app/hooks';
+import { pokedexSearch } from "./pokedexSlice";
+import { useAppDispatch } from '../../app/hooks';
 import {Box, Form, TextInput, Button} from 'grommet';
-
+import { PokedexCard } from "./PokedexCard";
 export function Pokedex() {
   const dispatch = useAppDispatch();
-  const pokemonDetails = useAppSelector(selectPokemon);
   const [searchTerm, setSearchTerm] = useState<string>('pikachu');
 
   function handleSearch(){
@@ -18,21 +17,23 @@ export function Pokedex() {
 
   return (
     <Box>
-      <Box>
+      <Box flex justify="center" direction="row">
         <Form onSubmit={handleSearch}>
-          <Box>
+          <Box width="medium" margin="small">
             <TextInput
               onChange={handleInputChange}
+              placeholder="Search for Pokemon"
             />
           <Button
             primary
             label='Search Pokemon'
+            margin="small"
             type='submit'
           />
           </Box>
         </Form>
       </Box>
-      <p>{pokemonDetails.name}</p>
+      {<PokedexCard/>}
     </Box>
   );
 }
