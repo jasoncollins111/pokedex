@@ -3,7 +3,7 @@
 An application that gives the ability to search for Pokemon and see name, photo, weight, height, and abilities of a Pokemon. As well, the application saves the search history for recall of previously viewed Pokemon. The project uses Create React App, Redux, Typescript, and Grommet. 
 
 
-## Changes 
+## Future Changes 
 
 If I had more time I would have like to complete some of the bonus elements such as seeing details about abilities, moves, species, etc. As well, I did not implement any error handling, testing, or pokemon evolution details for want of a speedy delivery.
 
