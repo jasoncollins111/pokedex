@@ -10,7 +10,7 @@ import { Grommet } from 'grommet';
 const theme = {
   global: {
     font: {
-      family: 'fantasy',
+      family: 'impact',
       size: '18px'
     }
   }

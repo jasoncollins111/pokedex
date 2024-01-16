@@ -23,8 +23,8 @@ export function PokedexCard() {
         <Box alignSelf="center">
         </Box>
         <Image fit="contain" src={pokemonDetails.sprite}/>
-        <Box flex direction="row" pad="xsmall" justify="between" margin={{bottom:"-100px"}}>
-            <Box>
+        <Box flex direction="row" pad="small" justify="between" margin={{bottom:"-50px"}}>
+            <Box margin="small">
                 <Text>Species: {pokemonDetails.species}</Text>
                 <Text>Weight: {pokemonDetails.weight}</Text>
                 <Text>Height: {pokemonDetails.height}</Text>
