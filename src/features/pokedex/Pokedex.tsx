@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { pokedexSearch, selectHistory, selectStatus } from "./pokedexSlice";
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { Box, Form, TextInput, Button } from 'grommet';
+import { Box, Form, Text, TextInput, Button } from 'grommet';
 import { PokedexCard } from "./PokedexCard";
 import { PokedexHistory } from "./PokedexHistory";
 
@@ -9,7 +9,7 @@ export function Pokedex() {
   const dispatch = useAppDispatch();
   const searchStatus = useAppSelector(selectStatus);
   const historyStatus = useAppSelector(selectHistory);
-  const [searchTerm, setSearchTerm] = useState<string>('pikachu');
+  const [searchTerm, setSearchTerm] = useState<string>('');
 
   function handleSearch(){
     return dispatch(pokedexSearch(searchTerm.toLowerCase()));
@@ -39,6 +39,7 @@ export function Pokedex() {
         </Form>
       </Box>
       {searchStatus === 'fulfilled' && <PokedexCard/>}
+      {searchStatus === 'failed' && <Text color="red" alignSelf="center">No Pokemon with that name was found. Please try your search again.</Text>}
       <Box flex justify="center" direction="row">
         {historyStatus.length > 0 && <PokedexHistory/>}
       </Box>
