@@ -1,9 +1,48 @@
+import { useState } from "react";
+import { pokedexSearch, selectHistory, selectStatus } from "./pokedexSlice";
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { Box, Form, Text, TextInput, Button } from 'grommet';
+import { PokedexCard } from "./PokedexCard";
+import { PokedexHistory } from "./PokedexHistory";
 
 export function Pokedex() {
+  const dispatch = useAppDispatch();
+  const searchStatus = useAppSelector(selectStatus);
+  const historyStatus = useAppSelector(selectHistory);
+  const [searchTerm, setSearchTerm] = useState<string>('');
+
+  function handleSearch(){
+    return dispatch(pokedexSearch(searchTerm.toLowerCase()));
+  }
+
+  function handleInputChange(event: React.ChangeEvent<HTMLInputElement>){
+    setSearchTerm(event.target.value);
+  }
 
   return (
-    <div>
-      <p>Hello World!</p>
-    </div>
+    <Box skeleton={searchStatus === 'loading'}>
+      <Box flex justify="center" direction="row">
+        <Form onSubmit={handleSearch}>
+          <Box width="medium" margin="small">
+            <TextInput
+              onChange={handleInputChange}
+              placeholder="Enter name of Pokemon"
+            />
+          <Button
+            primary
+            label='Search Pokedex'
+            margin={{top: "small", left: "xlarge", right: "xlarge"}}
+            pad="small"
+            type='submit'
+          />
+          </Box>
+        </Form>
+      </Box>
+      {searchStatus === 'fulfilled' && <PokedexCard/>}
+      {searchStatus === 'failed' && <Text color="red" alignSelf="center">No Pokemon with that name was found. Please try your search again.</Text>}
+      <Box flex justify="center" direction="row">
+        {historyStatus.length > 0 && <PokedexHistory/>}
+      </Box>
+    </Box>
   );
 }

@@ -5,14 +5,25 @@ import { store } from './app/store';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import './index.css';
+import { Grommet } from 'grommet';
 
+const theme = {
+  global: {
+    font: {
+      family: 'fantasy',
+      size: '18px'
+    }
+  }
+}
 const container = document.getElementById('root')!;
 const root = createRoot(container);
 
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <Grommet theme={theme}>
+        <App />
+      </Grommet>
     </Provider>
   </React.StrictMode>
 );

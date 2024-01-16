@@ -2,16 +2,38 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { RootState } from '../../app/store';
 import { fetchPokemon } from './pokedexAPI';
 
+interface PokemonState {
+  pokemonDetails: Pokemon;
+  status: 'idle' | 'loading' | 'failed' | 'fulfilled';
+  history: string[];
+}
 
-const initialState = {
-  pokemon: 0,
-  status: 'idle'
+interface Pokemon {
+  abilities: string[];
+  name: string;
+  height: string;
+  weight: string;
+  sprite: string;
+  species: string;
+}
+
+const initialState: PokemonState = {
+  pokemonDetails: {
+    abilities: [],
+    name: '',
+    height: '',
+    weight: '',
+    sprite: '',
+    species: ''
+  },
+  status: 'idle',
+  history: []
 };
 
-export const pokedexAsync = createAsyncThunk(
+export const pokedexSearch = createAsyncThunk(
   'pokedex/fetchPokemon',
-  async () => {
-    const response = await fetchPokemon();
+  async (name: string) => {
+    const response = await fetchPokemon(name);
     return response;
   }
 );
@@ -23,18 +45,22 @@ export const pokedexSlice = createSlice({
 
   extraReducers: (builder) => {
     builder
-      .addCase(pokedexAsync.pending, (state) => {
+      .addCase(pokedexSearch.pending, (state) => {
         state.status = 'loading';
       })
-      .addCase(pokedexAsync.fulfilled, (state, action) => {
-        state.status = 'idle';
+      .addCase(pokedexSearch.fulfilled, (state, action) => {
+        state.status = 'fulfilled';
+        state.pokemonDetails = action.payload;
+        !state.history.includes(action.payload.name) && state.history.push(action.payload.name);
       })
-      .addCase(pokedexAsync.rejected, (state) => {
+      .addCase(pokedexSearch.rejected, (state) => {
         state.status = 'failed';
       });
   },
 });
 
-export const selectPokemon = (state: RootState) => state.pokedex;
+export const selectPokemon = (state: RootState) => state.pokedex.pokemonDetails;
+export const selectStatus = (state: RootState) => state.pokedex.status;
+export const selectHistory = (state: RootState) => state.pokedex.history;
 
 export default pokedexSlice.reducer;
