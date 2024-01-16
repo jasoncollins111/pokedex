@@ -5,7 +5,7 @@ An application that gives the ability to search for Pokemon and see name, photo,
 
 ## Future Changes 
 
-If I had more time I would have like to complete some of the bonus elements such as seeing details about abilities, moves, species, etc. As well, I did not implement any error handling, testing, or pokemon evolution details for want of a speedy delivery.
+If I had more time I would have like to complete some of the bonus elements such as seeing details about abilities, species, etc. As well, I did not implement any error handling, testing, or pokemon evolution details for want of a speedy delivery.
 
 ## Concurrent environment considerations
 
