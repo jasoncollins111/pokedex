@@ -1,10 +1,26 @@
-# Getting Started with Create React App
+# Pokedex
+
+An application that gives the ability to search for Pokemon and see name, photo, weight, height, and abilities of a Pokemon. As well, the application saves the search history for recall of previously viewed Pokemon. The project uses Create React App, Redux, Typescript, and Grommet. 
+
+
+## Changes 
+
+If I had more time I would have like to complete some of the bonus elements such as seeing details about abilities, moves, species, etc. As well, I did not implement any error handling, testing, or pokemon evolution details for want of a speedy delivery.
+
+## Concurrent environment considerations
+
+While javascript uses some pretty robust concurrent patterns such as promises, async/await, and event emitter, there are some ways to make this application more resilient in a concurrent environment. You could employ a node server with worker threads that can handle multi-threaded operations. As well, utilizing a technology such as Kubernetes to give you scaling automation and load balancing would be a solid concurrency option.
+
+## Getting Started 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) TS template.
 
 ## Available Scripts
 
 In the project directory, you can run:
+
+### `npm install`
+Downloads packages needed to run the application.
 
 ### `npm start`
 
@@ -14,10 +30,6 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
 ### `npm run build`
 
@@ -39,8 +51,3 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).

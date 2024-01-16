@@ -14,6 +14,7 @@ interface Pokemon {
   height: string;
   weight: string;
   sprite: string;
+  species: string;
 }
 
 const initialState: PokemonState = {
@@ -22,7 +23,8 @@ const initialState: PokemonState = {
     name: '',
     height: '',
     weight: '',
-    sprite: ''
+    sprite: '',
+    species: ''
   },
   status: 'idle',
   history: []

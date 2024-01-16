@@ -17,13 +17,18 @@ export function PokedexCard() {
         background="antiqueWhite"
         margin="medium"
     >
-        <CardHeader alignSelf="center">
+        <CardHeader alignSelf="center" direction="column">
             <Heading level="3">{pokemonDetails.name.toUpperCase()}</Heading>
         </CardHeader>
+        <Box alignSelf="center">
+        </Box>
         <Image fit="contain" src={pokemonDetails.sprite}/>
-        <Box justify="end" pad="xsmall">
-            <Text>Weight: {pokemonDetails.weight}</Text>
-            <Text>Height: {pokemonDetails.height}</Text>
+        <Box flex direction="row" pad="xsmall" justify="between" margin={{bottom:"-100px"}}>
+            <Box>
+                <Text>Species: {pokemonDetails.species}</Text>
+                <Text>Weight: {pokemonDetails.weight}</Text>
+                <Text>Height: {pokemonDetails.height}</Text>
+            </Box>
         </Box>
         <Box>
             <Text alignSelf="center" style={{textDecoration: 'underline'}}>Abilities</Text>
