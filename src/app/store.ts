@@ -1,11 +1,13 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import pokedexReducer from '../features/pokedex/slices/pokedexSlice';
-import pokemonReducer from '../features/pokedex/slices/pokemonSlice';
+import pokemonMoveReducer from '../features/pokedex/slices/pokemonMoveSlice';
+import pokemonAbilityReducer from '../features/pokedex/slices/pokemonAbilitySlice';
 
 export const store = configureStore({
   reducer: {
     pokedex: pokedexReducer,
-    pokemon: pokemonReducer
+    pokemonMove: pokemonMoveReducer,
+    pokemonAbility: pokemonAbilityReducer
   },
 });
 
