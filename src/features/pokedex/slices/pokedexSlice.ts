@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { RootState } from '../../app/store';
-import { fetchPokemon } from './pokedexAPI';
+import { RootState } from '../../../app/store';
+import { fetchPokemon } from '../pokedexAPI';
 
 interface PokemonState {
   pokemonDetails: Pokemon;
@@ -9,22 +9,31 @@ interface PokemonState {
 }
 
 interface Pokemon {
-  abilities: string[];
+  abilities: [{name: string, url: string}];
   name: string;
   height: string;
   weight: string;
   sprite: string;
   species: string;
+  moves: [Moves];
+}
+
+interface Moves {
+  move: {
+    name: string;
+    url: string;
+  }
 }
 
 const initialState: PokemonState = {
   pokemonDetails: {
-    abilities: [],
+    abilities: [{name: '', url: ''}],
     name: '',
     height: '',
     weight: '',
     sprite: '',
-    species: ''
+    species: '',
+    moves: [{move:{name: '', url: ''}}]
   },
   status: 'idle',
   history: []

@@ -1,18 +1,22 @@
 import { useState } from "react";
-import { pokedexSearch, selectHistory, selectStatus } from "./pokedexSlice";
+import { pokedexSearch, selectStatus } from "./slices/pokedexSlice";
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { Box, Form, Text, TextInput, Button } from 'grommet';
-import { PokedexCard } from "./PokedexCard";
-import { PokedexHistory } from "./PokedexHistory";
+import { PokedexCard } from "./components/PokedexCard";
+import { selectMove, clearMove } from "./slices/pokemonMoveSlice";
+import { selectAbility, clearAbility } from "./slices/pokemonAbilitySlice";
 
 export function Pokedex() {
   const dispatch = useAppDispatch();
   const searchStatus = useAppSelector(selectStatus);
-  const historyStatus = useAppSelector(selectHistory);
+  const moveDescription = useAppSelector(selectMove);
+  const abilityDescription = useAppSelector(selectAbility);
   const [searchTerm, setSearchTerm] = useState<string>('');
 
   function handleSearch(){
-    return dispatch(pokedexSearch(searchTerm.toLowerCase()));
+    dispatch(clearAbility())
+    dispatch(clearMove())
+    dispatch(pokedexSearch(searchTerm.toLowerCase()));
   }
 
   function handleInputChange(event: React.ChangeEvent<HTMLInputElement>){
@@ -39,10 +43,16 @@ export function Pokedex() {
         </Form>
       </Box>
       {searchStatus === 'fulfilled' && <PokedexCard/>}
-      {searchStatus === 'failed' && <Text color="red" alignSelf="center">No Pokemon with that name was found. Please try your search again.</Text>}
-      <Box flex justify="center" direction="row">
-        {historyStatus.length > 0 && <PokedexHistory/>}
+      <Box width="large" alignSelf="center" border={!!moveDescription || !!abilityDescription} pad="small">
+        <Text color="green">{moveDescription || abilityDescription}</Text>
       </Box>
+      {searchStatus === 'failed' &&
+        <Text
+          color="red"
+          alignSelf="center"
+        >
+          No Pokemon with that name was found. Please try your search again.
+        </Text>}
     </Box>
   );
 }
