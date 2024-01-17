@@ -46,10 +46,10 @@ export function Pokedex() {
       <Box width="large" alignSelf="center" border={!!moveDescription || !!abilityDescription} pad="small">
         <Text color="green">{moveDescription || abilityDescription}</Text>
       </Box>
-      {searchStatus === 'failed' && 
+      {searchStatus === 'failed' &&
         <Text
           color="red"
-          alignSelf="center
+          alignSelf="center"
         >
           No Pokemon with that name was found. Please try your search again.
         </Text>}
