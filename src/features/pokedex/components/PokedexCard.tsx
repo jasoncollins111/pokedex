@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { selectPokemon } from "../slices/pokedexSlice";
 import { moveSearch } from "../slices/pokemonMoveSlice";
-import { abilitySearch } from "../slices/pokemonAbilitySlice";
-
+import { abilitySearch, clearAbility } from "../slices/pokemonAbilitySlice";
+import { clearMove } from "../slices/pokemonMoveSlice";
 import { useAppSelector, useAppDispatch } from '../../../app/hooks';
 import {Box, Button, Card, CardHeader, Menu, Image, Text, Heading} from 'grommet';
 
@@ -11,13 +11,18 @@ export function PokedexCard() {
   const dispatch = useAppDispatch();
   const [menuTitle, setMenuTitle] = useState<string>('Moves')
   
+  function handleAbilitySearch(url: string){
+    dispatch(clearMove());
+    dispatch(abilitySearch(url));
+  }
+
   const abilityMap = pokemonDetails.abilities.map((ability, idx) => {
     return (
         <Button 
             color='blue' 
             hoverIndicator={{color: "lightBlue"}} 
             secondary key={idx} 
-            onClick={()=>dispatch(abilitySearch(ability.url))}
+            onClick={()=>handleAbilitySearch(ability.url)}
             label={<Text color="blue">{ability.name}</Text>}
             margin="xxsmall"
         />
@@ -27,6 +32,7 @@ export function PokedexCard() {
   const moveMap = pokemonDetails.moves.map((moveList, idx) => {
     return {label: moveList.move.name, onClick: ()=>{
         setMenuTitle(moveList.move.name);
+        dispatch(clearAbility());
         dispatch(moveSearch(moveList.move.url));
     }}
   });
