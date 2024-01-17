@@ -1,11 +1,13 @@
 # Pokedex
 
-An application that gives the ability to search for Pokemon and see name, photo, weight, height, and abilities of a Pokemon. As well, the application saves the search history for recall of previously viewed Pokemon. The project uses Create React App, Redux, Typescript, and Grommet. 
+An application that gives the ability to search for Pokemon and see name, photo, weight, height, moves and abilities of a Pokemon. You can get details on abilities and moves by selecting a move or ability. As well, the application saves the search history for recall of previously viewed Pokemon. The project uses Create React App, Redux, Typescript, and Grommet. 
 
 
 ## Future Changes 
 
-If I had more time I would have like to complete some of the bonus elements such as seeing details about abilities, species, etc. As well, I did not implement any error handling, testing, or pokemon evolution details for want of a speedy delivery.
+The Pokemon API offers many options to keep building out features and optimizations. I found myself wishing I had more time to implement many of the options that the API provides. If I did hav more time I would have liked to surfaced more of the details related to moves and abilities. There are variables that are in some of the details text that are in the json but I wasn't able to get to replacing those so some of the descriptions are formatted weirdly, i.e. "Has a $effect_chance% chance to freeze the target."
+
+As well I would have liked to complete more of the bonus elements, refactored some of the files into more modular components, and an interactive view of the sprites. As well, I did not implement much in the way of error handling, testing, or pokemon evolution details for want of a speedy delivery.
 
 ## Concurrent environment considerations
 
