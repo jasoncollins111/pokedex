@@ -5,9 +5,9 @@ An application that gives the ability to search for Pokemon and see name, photo,
 
 ## Future Changes 
 
-The Pokemon API offers many options to keep building out features and optimizations. I found myself wishing I had more time to implement many of the options that the API provides. If I did hav more time I would have liked to surfaced more of the details related to moves and abilities. There are variables that are in some of the details text that are in the json but I wasn't able to get to replacing those so some of the descriptions are formatted weirdly, i.e. "Has a $effect_chance% chance to freeze the target."
+The Pokemon API offers many options to keep building out features and optimizations. I found myself wishing I had more time to implement many of the options that the API provides. If I did have more time I would have surfaced more of the details related to moves and abilities. There are variables that are in the ability/move json that I wasn't able to replace, so some of the descriptions are formatted weirdly, i.e. "Has a $effect_chance% chance to freeze the target."
 
-As well I would have liked to complete more of the bonus elements, refactored some of the files into more modular components, and an interactive view of the sprites. As well, I did not implement much in the way of error handling, testing, or pokemon evolution details for want of a speedy delivery.
+As well, I would have liked to complete more of the bonus elements, refactored some of the files into more modular components, and have an interactive view of the sprites. I did not implement much in the way of error handling, testing, or pokemon evolution details for want of a speedy delivery.
 
 ## Concurrent environment considerations
 
